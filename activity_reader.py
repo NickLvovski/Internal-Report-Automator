@@ -8,13 +8,13 @@ class ActivityReader:
         self.parser = Parser()
         self._data = None 
 
-    def _get_data(self):
+    def __get_data(self):
         if self._data is None:
             self._data = self.parser.parse_excel(self.file_path)
         return self._data
 
-    def _get_unique(self):
-        data = self._get_data()
+    def __get_unique(self):
+        data = self.__get_data()
 
         seen = set()
         unique = []
@@ -24,6 +24,9 @@ class ActivityReader:
             if (
                 activity
                 and "Итого" not in activity
+                and "Проект" not in activity
+                and "None" not in activity
+                and "тариф" not in activity.lower()
                 and activity not in seen
             ):
                 seen.add(activity)
@@ -32,8 +35,8 @@ class ActivityReader:
         return unique
 
     def read_activities(self):
-        data = self._get_data()
-        activities = self._get_unique()
+        data = self.__get_data()
+        activities = self.__get_unique()
 
         result = []
 
