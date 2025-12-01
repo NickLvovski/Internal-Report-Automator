@@ -23,5 +23,5 @@ if __name__ == "__main__":
     argparser.add_argument("--output_dir", type=str, help="Директория для сохранения созданных отчетов.")
     args = argparser.parse_args()
     
-    main(file_path=args.file_path, output_dir=args.output_dir)
+    main(file_path=args.file_path, output_dir=args.output_dir if args.output_dir else '.')
 
