@@ -10,6 +10,7 @@ class WorkbookCreator:
         pass
 
     def create_workbook(self, data, activity_name, output_dir):
+        total:float = 0
         output_dir = Path(output_dir) 
         output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -25,6 +26,9 @@ class WorkbookCreator:
 
         for row in data:
             sheet.append(row)
+            total += float(row[-1])
+
+        sheet.append(["Итого", total])
 
         month_name = calendar.month_name[datetime.now().month]
 
