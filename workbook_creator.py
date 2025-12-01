@@ -35,7 +35,7 @@ class WorkbookCreator:
                 cell_str = str(cell)
                 if len(column_widths) > i:
                     if len(cell_str) > column_widths[i]:
-                            column_widths[i] = len(str(cell))
+                            column_widths[i] = len(cell_str)
                 else:
                     column_widths += [len(cell_str)]
         
